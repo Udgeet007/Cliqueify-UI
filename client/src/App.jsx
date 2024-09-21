@@ -21,7 +21,9 @@ export default function App() {
         <Navbar />
         <div style={{ display: "flex" }}>
           <LeftBar />
-          <Outlet />
+          <div style={{ flex: 6 }}>
+            <Outlet />
+          </div>
           <RightBar />
         </div>
       </div>
@@ -41,7 +43,14 @@ export default function App() {
         <Routes>
           {/* <Route path="/" element={<Home />} /> */}
           {/* Define the Layout route */}
-          <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Layout />
+              </ProtectedRoute>
+            }
+          >
             {/* Nested routes will be rendered in the Outlet component */}
             <Route path="/" element={<Home />} />
             <Route path="profile/:id" element={<Profile />} />
