@@ -1,9 +1,9 @@
-import './register.scss'
-
+import "./register.scss";
+import { Link } from "react-router-dom";
 const Register = () => {
   return (
     <div className="register">
-       <div className="card">
+      <div className="card">
         <div className="left">
           <h1>Lama Social.</h1>
           <p>
@@ -12,8 +12,10 @@ const Register = () => {
             dolor officia quae laborum adipisci labore odio ducimus ratione
             tempora, itaque fuga quasi!
           </p>
-          <span>Dont you have an account.</span>
-          <button>Login</button>
+          <span>Do you have an account?</span>
+          <Link to='/login'>
+            <button>Login</button>
+          </Link>
         </div>
         <div className="right">
           <h1>Register</h1>
@@ -27,7 +29,7 @@ const Register = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Register;
