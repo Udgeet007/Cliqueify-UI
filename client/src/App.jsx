@@ -3,17 +3,18 @@ import {
   Routes,
   Route,
   Outlet,
+  Navigate,
 } from "react-router-dom";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import RightBar from "./componets/rightbar/RightBar";
 import Navbar from "./componets/navbar/Navbar";
 import LeftBar from "./componets/leftBar/LeftBar";
-import { Children } from "react";
 import Home from "./pages/home/Home";
 import Profile from "./pages/profile/Profile";
 
 export default function App() {
+  const currentUser = false;
   const Layout = () => {
     return (
       <div>
@@ -26,13 +27,21 @@ export default function App() {
       </div>
     );
   };
+
+  const ProtectedRoute = ({ children }) => {
+    //children is Layout in route
+    if (!currentUser) {
+      return <Navigate to="/login" />;
+    }
+    return children;
+  };
   return (
     <div>
       <Router>
         <Routes>
           {/* <Route path="/" element={<Home />} /> */}
           {/* Define the Layout route */}
-          <Route path="/" element={<Layout />}>
+          <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
             {/* Nested routes will be rendered in the Outlet component */}
             <Route path="/" element={<Home />} />
             <Route path="profile/:id" element={<Profile />} />
