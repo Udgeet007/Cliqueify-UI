@@ -11,13 +11,14 @@ import RightBar from "./componets/rightbar/RightBar";
 import Navbar from "./componets/navbar/Navbar";
 import LeftBar from "./componets/leftBar/LeftBar";
 import Home from "./pages/home/Home";
+import "./style.scss";
 import Profile from "./pages/profile/Profile";
 
 export default function App() {
   const currentUser = true;
   const Layout = () => {
     return (
-      <div>
+      <div className="theme-dark">
         <Navbar />
         <div style={{ display: "flex" }}>
           <LeftBar />
