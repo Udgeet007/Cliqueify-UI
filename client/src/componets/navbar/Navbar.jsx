@@ -6,9 +6,16 @@ import GridViewIcon from "@mui/icons-material/GridView";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import LightModeIcon from '@mui/icons-material/LightMode';
 import SearchIcon from "@mui/icons-material/Search";
+import { useContext } from "react";
+import { DarkModeContext } from "../../context/darkMode";
+import { AuthContext } from "../../context/authContext";
+
 
 const Navbar = () => {
+  const { toggle, darkMode } = useContext(DarkModeContext);
+  const {currentUser} = useContext(AuthContext);
   return (
     <div className="navbar">
       <div className="left">
@@ -16,20 +23,23 @@ const Navbar = () => {
           <span>Cliqueify</span>
         </Link>{" "}
         <HomeIcon />
-        <DarkModeIcon />
+       {darkMode ? <LightModeIcon onClick={toggle}/> : <DarkModeIcon onClick={toggle}/> } 
         <GridViewIcon />
         <div className="search">
-        <SearchIcon />
-        <input type="text" placeholder="Search" />
+          <SearchIcon />
+          <input type="text" placeholder="Search" />
         </div>
       </div>
       <div className="right">
-        <PersonOutlineIcon/>
-        <MailOutlineIcon/>
-        <NotificationsNoneIcon/>
+        <PersonOutlineIcon />
+        <MailOutlineIcon />
+        <NotificationsNoneIcon />
         <div className="user">
-          <img src="https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
-          <span>Toby Mac</span>
+          <img
+            src={currentUser.profilePic}
+            alt=""
+          />
+          <span>{currentUser.name}</span>
         </div>
       </div>
     </div>
