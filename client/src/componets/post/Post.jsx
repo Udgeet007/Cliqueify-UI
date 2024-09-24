@@ -7,39 +7,35 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Link } from "react-router-dom";
 import Comments from "../comments/Comments";
 import { useState } from "react";
+import PropTypes from 'prop-types';
 
 const Post = ({ post }) => {
   const [commentOpen, setCommentOpen] = useState(false);
-
-  //TEMPORARY
-  const liked = false;
+  const [liked, setLiked] = useState(false);
 
   return (
     <div className="post">
       <div className="container">
         <div className="user">
           <div className="userInfo">
-            <img src={post.profilePic} alt="" />
+            <img src={post.profilePic || '/default-profile.png'} alt="Profile" />
             <div className="details">
-              <Link
-                to={`/profile/${post.userId}`}
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
+              <Link to={`/profile/${post.userId}`} className="link">
                 <span className="name">{post.name}</span>
               </Link>
-              <span className="date">1 min ago</span>
+              <span className="date">1 min ago</span> {/* Adjust with dynamic date */}
             </div>
           </div>
           <MoreHorizIcon />
         </div>
         <div className="content">
           <p>{post.desc}</p>
-          <img src={post.img} alt="" />
+          {post.img && <img src={post.img} alt="Post Content" loading="lazy" />}
         </div>
         <div className="info">
-          <div className="item">
+          <div className="item" onClick={() => setLiked(!liked)}>
             {liked ? <FavoriteOutlinedIcon /> : <FavoriteBorderOutlinedIcon />}
-            12 Likes
+            {liked ? "13 Likes" : "12 Likes"}
           </div>
           <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
             <TextsmsOutlinedIcon />
@@ -56,4 +52,74 @@ const Post = ({ post }) => {
   );
 };
 
+Post.propTypes = {
+  post: PropTypes.shape({
+    profilePic: PropTypes.string,
+    userId: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    desc: PropTypes.string.isRequired,
+    img: PropTypes.string,
+  }).isRequired,
+};
+
 export default Post;
+
+// import "./post.scss";
+// import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+// import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
+// import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
+// import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
+// import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+// import { Link } from "react-router-dom";
+// import Comments from "../comments/Comments";
+// import { useState } from "react";
+
+// const Post = ({ post }) => {
+//   const [commentOpen, setCommentOpen] = useState(false);
+
+//   //TEMPORARY
+//   const liked = false;
+
+//   return (
+//     <div className="post">
+//       <div className="container">
+//         <div className="user">
+//           <div className="userInfo">
+//             <img src={post.profilePic} alt="" />
+//             <div className="details">
+//               <Link
+//                 to={`/profile/${post.userId}`}
+//                 style={{ textDecoration: "none", color: "inherit" }}
+//               >
+//                 <span className="name">{post.name}</span>
+//               </Link>
+//               <span className="date">1 min ago</span>
+//             </div>
+//           </div>
+//           <MoreHorizIcon />
+//         </div>
+//         <div className="content">
+//           <p>{post.desc}</p>
+//           <img src={post.img} alt="" />
+//         </div>
+//         <div className="info">
+//           <div className="item">
+//             {liked ? <FavoriteOutlinedIcon /> : <FavoriteBorderOutlinedIcon />}
+//             12 Likes
+//           </div>
+//           <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
+//             <TextsmsOutlinedIcon />
+//             12 Comments
+//           </div>
+//           <div className="item">
+//             <ShareOutlinedIcon />
+//             Share
+//           </div>
+//         </div>
+//         {commentOpen && <Comments />}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Post;
