@@ -36,7 +36,8 @@ const Navbar = () => {
         <NotificationsNoneIcon />
         <div className="user">
           <img
-            src={currentUser.profilePic}
+            // src={currentUser.profilePic}
+            src="https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             alt=""
           />
           <span>{currentUser.name}</span>
