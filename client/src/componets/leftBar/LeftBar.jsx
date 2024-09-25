@@ -22,11 +22,12 @@ const LeftBar = () => {
       <div className="container">
         <div className="menu">
           <div className="user">
-            <img
+            {/* <img
               src={currentUser.profilePic}
               alt=""
-            />
-            <span>{currentUser.name}</span>
+            /> */}
+            <img src={currentUser?.profilePic || "https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"} alt="Profile" />
+            <span>{currentUser?.name || "Toby Mac"}</span>
           </div>
           <div className="item">
             <img src={Friends} alt="" />

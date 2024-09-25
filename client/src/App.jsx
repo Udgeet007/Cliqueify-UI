@@ -5,6 +5,7 @@ import {
   Outlet,
   Navigate,
 } from "react-router-dom";
+// import PropTypes from 'prop-types';
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import RightBar from "./componets/rightbar/RightBar";
